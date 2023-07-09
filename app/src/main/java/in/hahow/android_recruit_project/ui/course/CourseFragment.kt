@@ -6,9 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import `in`.hahow.android_recruit_project.R
+import `in`.hahow.android_recruit_project.databinding.FragmentCourseBinding
+import hahow.android_recruit_project.data.JsonFileDataLoader
+import hahow.android_recruit_project.factory.ViewModelFactory
 
 class CourseFragment : Fragment() {
+
+    private var _binding: FragmentCourseBinding? = null
+    private val binding get() = _binding!!
 
     companion object {
         fun newInstance() = CourseFragment()
@@ -20,13 +25,32 @@ class CourseFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_course, container, false)
+        _binding = FragmentCourseBinding.inflate(inflater, container, false)
+
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(CourseViewModel::class.java)
-        // TODO: Use the ViewModel
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val dataLoader = JsonFileDataLoader(requireContext(), "courses.json")
+        viewModel = ViewModelProvider(this, ViewModelFactory(dataLoader)).get(CourseViewModel::class.java)
+
+        viewModel.courses.observe(viewLifecycleOwner) { courses ->
+
+        }
+
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

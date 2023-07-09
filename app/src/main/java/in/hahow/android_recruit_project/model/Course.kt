@@ -12,7 +12,3 @@ data class Course(
 data class SuccessCriteria(
     val numSoldTickets: Int
 )
-
-interface CourseLoader {
-    suspend fun loadCourses(): List<Course>
-}
