@@ -1,5 +1,9 @@
-package hahow.android_recruit_project.model
+package `in`.hahow.android_recruit_project.model
 
+
+data class DataResult(
+    val data :List<Course>
+)
 data class Course(
     val successCriteria: SuccessCriteria,
     val numSoldTickets: Int,

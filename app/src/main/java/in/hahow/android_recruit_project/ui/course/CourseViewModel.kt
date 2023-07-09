@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import hahow.android_recruit_project.data.DataLoader
-import hahow.android_recruit_project.model.Course
+import `in`.hahow.android_recruit_project.data.DataLoader
+import `in`.hahow.android_recruit_project.model.Course
 import kotlinx.coroutines.launch
 
 class CourseViewModel(private val dataLoader: DataLoader) : ViewModel() {

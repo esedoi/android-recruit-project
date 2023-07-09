@@ -1,9 +1,9 @@
-package hahow.android_recruit_project.factory
+package `in`.hahow.android_recruit_project.factory
 
 import `in`.hahow.android_recruit_project.ui.course.CourseViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import hahow.android_recruit_project.data.DataLoader
+import `in`.hahow.android_recruit_project.data.DataLoader
 
 class ViewModelFactory(private val dataLoader: DataLoader) : ViewModelProvider.Factory {
 
