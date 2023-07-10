@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import `in`.hahow.android_recruit_project.data.JsonFileDataLoader
 import `in`.hahow.android_recruit_project.factory.ViewModelFactory
+import android.annotation.SuppressLint
 
 class CourseFragment : Fragment() {
 
@@ -35,6 +36,7 @@ class CourseFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

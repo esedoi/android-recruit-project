@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/bg_status.xml" value="0.244" />
+        <entry key="app/src/main/res/drawable/bg_status_incubating.xml" value="0.116" />
+        <entry key="app/src/main/res/drawable/bg_status_published.xml" value="0.116" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.10572916666666667" />
         <entry key="app/src/main/res/layout/fragment_course.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/item_course.xml" value="0.39944305419921866" />

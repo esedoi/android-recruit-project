@@ -1,5 +1,6 @@
 package `in`.hahow.android_recruit_project.ui.course
 
+import `in`.hahow.android_recruit_project.R
 import `in`.hahow.android_recruit_project.databinding.ItemCourseBinding
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -32,33 +33,67 @@ class CourseAdapter :
 
         fun bind(item: Course) {
 
-
-            binding.courseTitleTextView.text = item.title
-
+            setTitle(item)
 
             val isSoldOut = item.numSoldTickets > item.successCriteria.numSoldTickets
 
+            setNumSoldTicketText(item, isSoldOut)
+
+            setProgressBar(item, isSoldOut)
+
+            setStatusText(item)
+
+            setCoverImg(item)
+
+        }
+
+        private fun setNumSoldTicketText(item: Course, isSoldOut: Boolean) {
             val courseTicketsText = if (isSoldOut) "100%" else "${item.numSoldTickets}/${
                 item.successCriteria
                     .numSoldTickets
             } "
+
+            binding.courseTicketsTextView.text = courseTicketsText
+        }
+
+        private fun setProgressBar(item: Course, isSoldOut: Boolean) {
             val soldOutPercent: Float =
                 if (isSoldOut) 100F else (item.numSoldTickets.toFloat() / item
                     .successCriteria.numSoldTickets.toFloat()) * 100
-
-
             binding.courseProgressBar.progress = soldOutPercent.toInt()
+        }
 
+        private fun setTitle(item: Course) {
+            binding.courseTitleTextView.text = item.title
+        }
 
-            binding.courseTicketsTextView.text = courseTicketsText
-
-            binding.courseStatusTextView.text = item.status
-
-
+        private fun setCoverImg(item: Course) {
             Glide.with(itemView)
                 .load(item.coverImageUrl)
                 .into(binding.courseImageView)
 
+        }
+
+        private fun setStatusText(item: Course) {
+
+            val statusType: StatusType = when (item.status) {
+                StatusType.SUCCESS.value -> {
+                    StatusType.SUCCESS
+                }
+                StatusType.PUBLISHED.name -> {
+                    StatusType.PUBLISHED
+                }
+                StatusType.INCUBATING.name -> {
+                    StatusType.INCUBATING
+                }
+                else -> {
+                    StatusType.INCUBATING
+                }
+            }
+
+            binding.courseStatusTextView.text = statusType.text
+
+            binding.courseStatusTextView.setBackgroundResource(statusType.backGround)
         }
 
         companion object {
@@ -83,4 +118,10 @@ class CourseCallback : DiffUtil.ItemCallback<Course>() {
     override fun areContentsTheSame(oldItem: Course, newItem: Course): Boolean {
         return oldItem == newItem
     }
+}
+
+enum class StatusType(val value: String, val text: String, val backGround: Int) {
+    SUCCESS("SUCCESS", "已達標", R.drawable.bg_status_success),
+    PUBLISHED("PUBLISHED", "已開課", R.drawable.bg_status_published),
+    INCUBATING("INCUBATING", "募資中", R.drawable.bg_status_incubating)
 }
