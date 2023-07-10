@@ -12,6 +12,7 @@ class JsonFileDataLoader(private val context: Context, private val fileName: Str
 
     private val gson = Gson()
 
+    //set dispatcher to IO , because this is a time consuming operation
     override suspend fun loadCourses(): List<Course> = withContext(Dispatchers.IO) {
         try {
             // load data from json file

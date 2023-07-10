@@ -37,12 +37,15 @@ class CourseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //initialize dataLoader and pass to viewModel Factory to build CourseViewModel
         val dataLoader = JsonFileDataLoader(requireContext(), "data.json")
+
         viewModel =
             ViewModelProvider(this, ViewModelFactory(dataLoader)).get(CourseViewModel::class.java)
 
         setupRecyclerView()
 
+        //when get course live data , submit to recycler adapter
         viewModel.courses.observe(viewLifecycleOwner) { courses ->
 
             courseAdapter.submitList(courses)
