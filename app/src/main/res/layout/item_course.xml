@@ -20,7 +20,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/courseImageView"
+                android:id="@+id/iv_course"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
@@ -32,15 +32,15 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/courseStatusTextView"
+                android:id="@+id/tv_course_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_status_success"
                 android:padding="4dp"
                 android:text="STATUS"
                 android:textColor="@android:color/white"
-                app:layout_constraintBottom_toBottomOf="@id/courseImageView"
-                app:layout_constraintEnd_toEndOf="@id/courseImageView" />
+                app:layout_constraintBottom_toBottomOf="@id/iv_course"
+                app:layout_constraintEnd_toEndOf="@id/iv_course" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -48,7 +48,7 @@
 
 
     <TextView
-        android:id="@+id/courseTitleTextView"
+        android:id="@+id/tv_course_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -56,7 +56,7 @@
         android:maxLines="2"
         android:textSize="14sp"
         android:text="Course Title"
-        app:layout_constraintBottom_toTopOf="@+id/courseTicketsTextView"
+        app:layout_constraintBottom_toTopOf="@+id/tv_course_ticket_num"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/guideline"
@@ -64,18 +64,18 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/courseTicketsTextView"
+        android:id="@+id/tv_course_ticket_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0/30"
         android:layout_marginBottom="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/courseProgressBar"
+        app:layout_constraintBottom_toTopOf="@+id/pb_course"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/courseTitleTextView" />
+        app:layout_constraintStart_toStartOf="@id/tv_course_title" />
 
     <ProgressBar
-        android:id="@+id/courseProgressBar"
+        android:id="@+id/pb_course"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="100dp"
         android:layout_height="4dp"
@@ -83,7 +83,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/courseTitleTextView" />
+        app:layout_constraintStart_toStartOf="@id/tv_course_title" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"

@@ -53,24 +53,24 @@ class CourseAdapter :
                     .numSoldTickets
             } "
 
-            binding.courseTicketsTextView.text = courseTicketsText
+            binding.tvCourseTicketNum.text = courseTicketsText
         }
 
         private fun setProgressBar(item: Course, isSoldOut: Boolean) {
             val soldOutPercent: Float =
                 if (isSoldOut) 100F else (item.numSoldTickets.toFloat() / item
                     .successCriteria.numSoldTickets.toFloat()) * 100
-            binding.courseProgressBar.progress = soldOutPercent.toInt()
+            binding.pbCourse.progress = soldOutPercent.toInt()
         }
 
         private fun setTitle(item: Course) {
-            binding.courseTitleTextView.text = item.title
+            binding.tvCourseTitle.text = item.title
         }
 
         private fun setCoverImg(item: Course) {
             Glide.with(itemView)
                 .load(item.coverImageUrl)
-                .into(binding.courseImageView)
+                .into(binding.ivCourse)
 
         }
 
@@ -91,9 +91,9 @@ class CourseAdapter :
                 }
             }
 
-            binding.courseStatusTextView.text = statusType.text
+            binding.tvCourseStatus.text = statusType.text
 
-            binding.courseStatusTextView.setBackgroundResource(statusType.backGround)
+            binding.tvCourseStatus.setBackgroundResource(statusType.backGround)
         }
 
         companion object {

@@ -41,7 +41,8 @@ class CourseFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val dataLoader = JsonFileDataLoader(requireContext(), "data.json")
-        viewModel = ViewModelProvider(this, ViewModelFactory(dataLoader)).get(CourseViewModel::class.java)
+        viewModel =
+            ViewModelProvider(this, ViewModelFactory(dataLoader)).get(CourseViewModel::class.java)
 
         setupRecyclerView()
 
