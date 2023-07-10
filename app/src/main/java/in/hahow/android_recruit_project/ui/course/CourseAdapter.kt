@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import `in`.hahow.android_recruit_project.model.Course
+import android.view.View
 
 
 class CourseAdapter :
@@ -44,6 +45,15 @@ class CourseAdapter :
             setStatusText(item)
 
             setCoverImg(item)
+
+            setCountdownVisibility(item)
+
+        }
+
+        private fun setCountdownVisibility(item: Course) {
+
+            binding.tvCourseCountdown.visibility = if (item.proposalDueTime != null) View
+                .VISIBLE else View.GONE
 
         }
 
