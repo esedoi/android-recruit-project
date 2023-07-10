@@ -8,10 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import `in`.hahow.android_recruit_project.databinding.FragmentCourseBinding
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import `in`.hahow.android_recruit_project.data.JsonFileDataLoader
 import `in`.hahow.android_recruit_project.factory.ViewModelFactory
-import android.annotation.SuppressLint
 
 class CourseFragment : Fragment() {
 
@@ -19,7 +17,6 @@ class CourseFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var courseAdapter: CourseAdapter
-    private var layoutManager: RecyclerView.LayoutManager? = null
 
     companion object {
         fun newInstance() = CourseFragment()
@@ -36,7 +33,7 @@ class CourseFragment : Fragment() {
         return binding.root
     }
 
-    @SuppressLint("NotifyDataSetChanged")
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -49,15 +46,13 @@ class CourseFragment : Fragment() {
         viewModel.courses.observe(viewLifecycleOwner) { courses ->
 
             courseAdapter.submitList(courses)
-            courseAdapter.notifyDataSetChanged()
         }
 
     }
 
     private fun setupRecyclerView() {
         courseAdapter = CourseAdapter()
-        layoutManager = LinearLayoutManager(this.context)
-        binding.rvCourses.layoutManager = layoutManager
+        binding.rvCourses.layoutManager = LinearLayoutManager(this.context)
         binding.rvCourses.adapter = courseAdapter
     }
 

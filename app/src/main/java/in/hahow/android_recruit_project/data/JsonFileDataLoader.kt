@@ -9,11 +9,22 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class JsonFileDataLoader(private val context: Context, private val fileName: String) : DataLoader {
+
+    private val gson = Gson()
+
     override suspend fun loadCourses(): List<Course> = withContext(Dispatchers.IO) {
-        // load data from json file
-        val json = context.assets.open(fileName).bufferedReader().use { it.readText() }
-        val gson = Gson()
-        val courseType = object : TypeToken<DataResult>() {}.type
-        gson.fromJson<DataResult>(json, courseType).data
+        try {
+            // load data from json file
+            val json = loadJsonFromFile()
+            val courseType = object : TypeToken<DataResult>() {}.type
+            gson.fromJson<DataResult>(json, courseType).data
+        } catch (e: Exception) {
+            // handle or log the error
+            emptyList()
+        }
+    }
+
+    private fun loadJsonFromFile(): String {
+        return context.assets.open(fileName).bufferedReader().use { it.readText() }
     }
 }
